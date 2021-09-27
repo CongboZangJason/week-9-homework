@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "Victoria Real Estate",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/CongboZangJason/week-9-homework/main/js/vic_localities.json",
+        "format": {"type": "topojson", "feature": "vic_localities"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/CongboZangJason/week-9-homework/main/data/_sold.csv"
+      },
+      "mark": {"type": "point", "tooltip": {"content": "data"}},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        
+        "color": {
+          "field": "price",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"}
+        }
+      }
+    }
+  ]
+}
